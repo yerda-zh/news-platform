@@ -14,7 +14,14 @@ import { trio } from 'ldrs';
 
 
 export default function Home(): JSX.Element {
-  trio.register();
+
+  useEffect(()=>{
+    if (typeof window !== 'undefined') {
+      import('ldrs').then(({ trio }) => {
+        trio.register();
+      });
+    }
+  }, []);
   const router = useRouter();
   const dispatch = useDispatch();
   const posts = useSelector((state: RootState) => state.posts);
