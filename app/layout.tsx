@@ -1,8 +1,29 @@
 import type { Metadata } from "next";
-import { Inter } from "next/font/google";
 import "./globals.css";
+import StyledComponentsRegistry from "./lib/registry";
+import { Bad_Script, Chau_Philomene_One, Ubuntu } from 'next/font/google';
+import NavBar from "./components/navbar/Navbar";
 
-const inter = Inter({ subsets: ["latin"] });
+const fontMain = Ubuntu({ 
+  subsets: ["latin"],
+  weight:  ['400','500'],
+  variable: '--font-main',
+  display: 'swap',
+});
+
+const fontSecondary = Bad_Script({ 
+  subsets: ["latin"],
+  weight: '400',
+  variable: '--font-secondary',
+  display: 'swap',
+});
+
+const fontHeader = Chau_Philomene_One({
+  subsets: ["latin"],
+  weight: '400',
+  variable: '--font-header',
+  display: 'swap',
+})
 
 export const metadata: Metadata = {
   title: "Create Next App",
@@ -16,7 +37,12 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
-      <body className={inter.className}>{children}</body>
+      <body className={`${fontMain.variable} ${fontSecondary.variable} ${fontHeader.variable}`}>
+        <StyledComponentsRegistry>
+          <NavBar />
+          {children}
+        </StyledComponentsRegistry>
+      </body>
     </html>
   );
 }
