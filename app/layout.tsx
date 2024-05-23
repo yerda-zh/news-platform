@@ -4,6 +4,7 @@ import StyledComponentsRegistry from "./lib/registry";
 import { Bad_Script, Chau_Philomene_One, Ubuntu } from 'next/font/google';
 import NavBar from "./components/navbar/Navbar";
 import Footer from "./components/footer/Footer";
+import ReduxProvider from "./redux/redux.provider";
 
 const fontMain = Ubuntu({ 
   subsets: ["latin"],
@@ -39,11 +40,13 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body className={`${fontMain.variable} ${fontSecondary.variable} ${fontHeader.variable}`}>
-        <StyledComponentsRegistry>
-          <NavBar />
-          {children}
-          <Footer/>
-        </StyledComponentsRegistry>
+        <ReduxProvider>
+          <StyledComponentsRegistry>
+            <NavBar />
+            {children}
+            <Footer/>
+          </StyledComponentsRegistry>
+        </ReduxProvider>  
       </body>
     </html>
   );

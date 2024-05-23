@@ -69,13 +69,3 @@ export const CardContainer = styled.div<CardContainerProps>`
     opacity: 0.6;
   }
 `;
-
-
-export const CardTag = styled.p`
-  font-size: 0.75rem;
-  background: var(--color-blue);
-  color: var(--color-white);
-  padding: 0.5rem 0.7rem;
-  width: fit-content;
-  border-radius: 2rem;
-`;

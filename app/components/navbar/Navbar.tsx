@@ -15,7 +15,7 @@ export default function NavBar(): React.JSX.Element {
         </HeaderContainer>
         <SearchbarContainer>
           {topics.map((topic) => (
-            <a>{topic}</a>
+            <a key={topic}>{topic}</a>
           ))}
           <div>
             <FiSearch />

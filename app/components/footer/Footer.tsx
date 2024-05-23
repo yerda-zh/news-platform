@@ -9,7 +9,7 @@ const Footer = () => {
     <FooterContainer>
       <div>
         {topics.map((topic) => (
-          <a>{topic}</a>
+          <a key={topic}>{topic}</a>
         ))}
       </div>
       <div>

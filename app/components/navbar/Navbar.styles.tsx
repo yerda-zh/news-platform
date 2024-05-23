@@ -29,7 +29,14 @@ export const SearchbarContainer = styled.div`
 
     a {
         font-family: var(--font-main);
-        padding: 0.5rem 1rem;
+        margin: 0.5rem 1rem;
+
+        transition: 0.1s ease-in-out;
+        cursor: pointer;
+
+        &:hover {
+            color: var(--color-red);
+        }
     }
 
     div{

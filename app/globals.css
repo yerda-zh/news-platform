@@ -2,8 +2,16 @@
   --color-main: #172B4D;
   --color-bg: #F6F7F9;
   --color-white: #FFFFFF;
-  --color-blue: #4B68A1;
   --color-red: #FF6D6D;
+  --color-tag1: #4B68A1;
+  --color-tag2: #479CFF;
+  --color-tag3: #FF6D6D;
+  --color-tag4: #1EBD71;
+  --color-tag5: #B957D2;
+  --color-tag6: #FFB72C;
+  --color-tag7: #AA2424;
+  --color-tag8: #4B47E2;
+
 }
 
 * {
