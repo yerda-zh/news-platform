@@ -3,6 +3,7 @@ import "./globals.css";
 import StyledComponentsRegistry from "./lib/registry";
 import { Bad_Script, Chau_Philomene_One, Ubuntu } from 'next/font/google';
 import NavBar from "./components/navbar/Navbar";
+import Footer from "./components/footer/Footer";
 
 const fontMain = Ubuntu({ 
   subsets: ["latin"],
@@ -41,6 +42,7 @@ export default function RootLayout({
         <StyledComponentsRegistry>
           <NavBar />
           {children}
+          <Footer/>
         </StyledComponentsRegistry>
       </body>
     </html>

@@ -15,6 +15,7 @@ export const CardContainer = styled.div<CardContainerProps>`
   break-inside: avoid;
   margin-bottom: 1rem;
   transition: 0.2s ease-in-out;
+  cursor: pointer;
 
   &:hover {
     transform: scale(1.03);
@@ -62,6 +63,10 @@ export const CardContainer = styled.div<CardContainerProps>`
           `;
       }
     }}
+  }
+
+  span {
+    opacity: 0.6;
   }
 `;
 
