@@ -37,16 +37,16 @@ const postsSlice = createSlice({
         const { postId, comment } = action.payload;
         const post = state.find(p => p.id === postId)
         if (post) {
-            post.comments.push(comment);
+            post.comments.unshift(comment);
         }
     },
-    updateComment: (state, action: PayloadAction<{ postId: number; commentId: number; updatedComment: Partial<Comment> }>) => {
+    updateComment: (state, action: PayloadAction<{ postId: number; commentId: number; updatedComment: string }>) => {
         const { postId, commentId, updatedComment } = action.payload;
         const post = state.find(p => p.id === postId);
         if (post) {
             const comment = post.comments.find(c => c.id === commentId);
             if (comment) {
-              Object.assign(comment, updatedComment);
+              comment.body = updatedComment;
             }
           }
     },

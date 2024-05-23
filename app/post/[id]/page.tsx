@@ -12,7 +12,7 @@ import { FaFacebook, FaTwitter } from "react-icons/fa";
 import { FaVk } from "react-icons/fa6";
 import Comment from '@/app/components/comment/Comment';
 import { useRouter } from 'next/navigation';
-import { incrementLikeCount, decrementLikeCount } from '@/app/redux/postsSlice';
+import { incrementLikeCount, decrementLikeCount, addComment } from '@/app/redux/postsSlice';
 
 const Post = () => {
   const dispatch = useDispatch<AppDispatch>();
@@ -22,6 +22,7 @@ const Post = () => {
   const postId = parseInt(id as string, 10);
   const post = useSelector((state: RootState) => state.posts.find(p => p.id === postId));
   const otherPosts = useSelector((state: RootState) => state.posts).slice(postId, postId + 6);
+  const [newComment, setNewComment] = useState<string>('');
 
   const getCardType = (index: number): 'full' | 'plain' | 'partial' => {
     const types: ('full' | 'plain' | 'partial')[] = ['full', 'plain', 'partial'];
@@ -40,6 +41,29 @@ const Post = () => {
     }
   }
 
+  const handleCommentChange = (event: React.ChangeEvent<HTMLTextAreaElement>) => {
+    setNewComment(event.target.value);
+  };
+
+  const handleAddComment = () => {
+    if (newComment.trim()) {
+      const newCommentId = Date.now();
+      dispatch(
+        addComment({
+          postId,
+          comment: {
+            postId,
+            id: newCommentId,
+            name: "User Name",
+            body: newComment,
+            email: "user@example.com",
+          },
+        })
+      );
+      setNewComment(""); // Clear the textarea after adding the comment
+    }
+  };
+
   if (!post)
     return (
       <div
@@ -54,7 +78,7 @@ const Post = () => {
         Post not found
       </div>
     );
-
+    console.log(post.comments);
   return (
     <>
       <DetailedContainer>
@@ -70,15 +94,18 @@ const Post = () => {
             <Button liked={post.liked} onClick={handleLikeClick} buttonType = 'light'><BiSolidLike/> Ұнайды ({post.likeCount})</Button>
             <Button buttonType = 'light'><FaFacebook /> <FaTwitter /> <FaVk /> </Button>
         </ButtonsContainer>
+
         <h4>Пікірлер ({post.comments.length})</h4>
         {post.comments.map((comment)=> (
           <>
-            <Comment body={comment.body} email={comment.email} mine = {false}/>
+            <Comment body={comment.body} commentId={comment.id} postId={post.id} email={comment.email} mine = {comment.email === 'user@example.com'}/>
             <div className='divider'/>
           </>
         ))}
-        <textarea placeholder='Пікіріңізді жазыңыз...'/>
-        <Button  style={{ marginLeft: "auto" }} buttonType='dark'>Қосу</Button>
+
+        <textarea placeholder='Пікіріңізді жазыңыз...' value={newComment} onChange={handleCommentChange}/>
+        <Button  style={{ marginLeft: "auto" }} buttonType='dark' onClick={handleAddComment}>Қосу</Button>
+
       </DetailedContainer>
       <MasonryLayout style={{background: 'var(--color-white)', padding: '6rem 3rem'}}>
           {otherPosts.map((post, index) => (

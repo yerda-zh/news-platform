@@ -14,14 +14,6 @@ import { trio } from 'ldrs';
 
 
 export default function Home(): JSX.Element {
-
-  useEffect(()=>{
-    if (typeof window !== 'undefined') {
-      import('ldrs').then(({ trio }) => {
-        trio.register();
-      });
-    }
-  }, []);
   const router = useRouter();
   const dispatch = useDispatch();
   const posts = useSelector((state: RootState) => state.posts);
@@ -57,6 +49,14 @@ export default function Home(): JSX.Element {
   const handleCardClick = (id: number): void => {
     router.push(`/post/${id}`);
   };
+
+  useEffect(()=>{
+    if (typeof window !== 'undefined') {
+      import('ldrs').then(({ trio }) => {
+        trio.register();
+      });
+    }
+  }, []);
 
   const fetchPosts = async () => {
     setLoading(true);
