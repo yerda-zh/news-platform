@@ -1,7 +1,5 @@
 import React from "react";
-import {
-  CardContainer,
-} from "./Card.styles";
+import {CardContainer,} from "./Card.styles";
 import Tag from "../tag/Tag";
 
 interface CardProps {
