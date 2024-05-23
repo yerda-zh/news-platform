@@ -1,3 +1,4 @@
+'use client';
 import React from "react";
 import { CommentContainer, PersonContainer, ContentContainer, EditContainer, } from "./Comment.styles";
 import { MdPerson } from "react-icons/md";

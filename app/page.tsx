@@ -10,7 +10,7 @@ import { useSelector, useDispatch } from "react-redux";
 import { RootState } from "./redux/store";
 import { addPosts } from "./redux/postsSlice";
 import { useRouter } from "next/navigation";
-import { trio } from 'ldrs'
+import { trio } from 'ldrs';
 
 
 export default function Home(): JSX.Element {
@@ -20,6 +20,7 @@ export default function Home(): JSX.Element {
   const posts = useSelector((state: RootState) => state.posts);
 
   const [loading, setLoading] = useState<boolean>(false);
+  const [error, setError] = useState<string | null>(null);
   const [currentPage, setCurrentPage] = useState<number>(1);
   const [postsPerPage, setPostsPerPage] = useState<number>(14);
   const maxPosts: number = 62;
@@ -51,6 +52,7 @@ export default function Home(): JSX.Element {
   };
 
   const fetchPosts = async () => {
+    setLoading(true);
     try {
       const postsResponse = await axios.get('https://jsonplaceholder.typicode.com/posts');
 
@@ -72,7 +74,9 @@ export default function Home(): JSX.Element {
 
       dispatch(addPosts(data));
     } catch (error) {
-      throw new Error('Error Fetching data');
+      setError("An error occurred while fetching posts.");
+    } finally {
+      setLoading(false);
     }
   };
 
@@ -87,7 +91,9 @@ export default function Home(): JSX.Element {
   const firstPostIndex = lastPostIndex - postsPerPage;
   const currentPosts = posts.slice(firstPostIndex, lastPostIndex);
 
-  if (!posts.length)
+  if (error) return <LoadingContainer>{error}</LoadingContainer>; 
+
+  if (loading || !posts.length)
     return (
       <LoadingContainer>
         <l-trio size="50" speed="0.9" color="black"></l-trio>
