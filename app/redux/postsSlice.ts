@@ -1,5 +1,6 @@
 'use client';
 import { createSlice, PayloadAction } from "@reduxjs/toolkit";
+import Post from "../post/[id]/page";
 
 interface Comment {
     postId: number;
@@ -18,6 +19,7 @@ interface Comment {
     tag: 'Ақпарат' | 'Әдебиет' | 'Өнер' | 'Ғылым' | 'Эксклюзив' | 'Карьера' | 'Спорт' | 'Тарих';
     comments: Comment[];
     likeCount: number;
+    liked: boolean;
   }
   
 type PostsState = Post[];
@@ -54,8 +56,24 @@ const postsSlice = createSlice({
         if (post) {
           post.comments = post.comments.filter(c => c.id !== commentId);
         }
-    }
+    },
+    incrementLikeCount: (state, action: PayloadAction<number>) => {
+      const postId = action.payload;
+      const post = state.find(post => post.id === postId);
+      if (post) {
+        post.likeCount += 1;
+        post.liked = true;
+      }
+    },
+    decrementLikeCount: (state, action: PayloadAction<number>) => {
+      const postId = action.payload;
+      const post = state.find(post => post.id === postId);
+      if (post) {
+        post.likeCount -= 1;
+        post.liked = false;
+      }
+    },
   },
 });
-export const { addPosts, addComment, updateComment, deleteComment } = postsSlice.actions;
+export const { addPosts, addComment, updateComment, deleteComment, incrementLikeCount, decrementLikeCount } = postsSlice.actions;
 export default postsSlice.reducer;

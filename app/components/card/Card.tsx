@@ -10,11 +10,12 @@ interface CardProps {
   date: string;
   tag: 'Ақпарат' | 'Әдебиет' | 'Өнер' | 'Ғылым' | 'Эксклюзив' | 'Карьера' | 'Спорт' | 'Тарих';
   type: "full" | "partial" | "plain";
+  onClick: () => void;
 }
 
-const Card: React.FC<CardProps> = ({ title, imageUrl, date, tag, type }) => {
+const Card: React.FC<CardProps> = ({ title, imageUrl, date, tag, type, onClick }) => {
     return (
-      <CardContainer type={type} bg={imageUrl}>
+      <CardContainer type={type} bg={imageUrl}  onClick={onClick}>
         <img src={imageUrl} alt={title} />
         <div>
           <Tag tag={tag}/>

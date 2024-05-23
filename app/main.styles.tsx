@@ -14,3 +14,10 @@ export const FirstRow = styled.div`
   grid-template-columns: 2fr 1.5fr;
   gap: 1rem;
 `;
+export const LoadingContainer = styled.div`
+  width: 100dvw;
+  height: 90dvh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+`;
