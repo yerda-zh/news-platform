@@ -1,12 +1,8 @@
 'use client';
-import React, { useEffect, useState } from "react";
-import { CommentContainer, PersonContainer, ContentContainer, EditContainer, } from "./Comment.styles";
+import React from "react";
+import { CommentContainer, PersonContainer, ContentContainer, EditContainer, DeleteButton, EditButton, } from "./Comment.styles";
 import { MdPerson } from "react-icons/md";
-import { BiSolidPencil } from "react-icons/bi";
-import { FaTrash } from "react-icons/fa";
-import { AppDispatch } from "@/app/redux/store";
-import { useDispatch } from "react-redux";
-import { deleteComment, updateComment } from "@/app/redux/postsSlice";
+import useCommentHandlers from "@/app/hooks/useComment";
 
 interface CommentsProps {
   commentId: number;
@@ -17,40 +13,14 @@ interface CommentsProps {
 }
 
 const Comment: React.FC<CommentsProps> = ({ commentId, postId, email, body, mine }) => {
-  const dispatch = useDispatch<AppDispatch>();
-  const [editting, setEditting] = useState<boolean>(false);
-  const [comment, setComment] = useState<string>(body);
-
-  const handleRemoveComment = () => {
-    dispatch(
-      deleteComment({postId, commentId})
-    );
-    setEditting(false);
-  };
-
-  const handleCommentChange = (event: React.ChangeEvent<HTMLInputElement>) => {
-    setComment(event.target.value);
-  };
-
-  const handleEditComment = () => {
-    setEditting(true);
-    setComment(body);
-  }
-
-  const handleEditSave = () => {
-    dispatch(
-      updateComment({postId, commentId, updatedComment: comment})
-    );
-    setEditting(false);
-  }
-
-  useEffect(()=>{
-    if(!body.length) {
-      dispatch(
-        deleteComment({postId, commentId})
-      );
-    }
-  },[body]);
+  const {
+    editting,
+    comment,
+    handleEditComment,
+    handleEditSave,
+    handleRemoveComment,
+    handleCommentChange,
+  } = useCommentHandlers(commentId, postId, body);
 
   return (
     <CommentContainer>
@@ -67,8 +37,8 @@ const Comment: React.FC<CommentsProps> = ({ commentId, postId, email, body, mine
       {mine && (
         <EditContainer editting = {editting}>
           <button onClick={handleEditSave}>өзгерту</button>
-          <BiSolidPencil style={{cursor: 'pointer', display: `${editting ? 'none' : ''}`}} onClick={handleEditComment} />
-          <FaTrash color="var(--color-red)" style={{cursor: 'pointer'}} onClick={handleRemoveComment}/>
+          <EditButton editting = {editting} onClick={handleEditComment} />
+          <DeleteButton onClick={handleRemoveComment}/>
         </EditContainer>
       )}
     </CommentContainer>

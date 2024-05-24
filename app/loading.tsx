@@ -1,5 +1,6 @@
 'use client'
 import { useEffect } from "react";
+import { LoadingContainer } from "./components/loader/Loader.styles";
 
 export default function Loading() {
   useEffect(()=>{
@@ -10,10 +11,9 @@ export default function Loading() {
     }
   }, []);
   
-  
   return (
-    <div style={{width: '100%', height: '90dvh', display: 'flex', justifyContent: 'center', alignItems: 'center'}}>
+    <LoadingContainer>
       {typeof window !== 'undefined' && <l-momentum size="47" speed="0.9" color="var(--color-main)" />}
-    </div>
+    </LoadingContainer>
   );
 }

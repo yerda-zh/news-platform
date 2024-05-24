@@ -9,11 +9,11 @@ interface PaginationProps {
   currentPage: number;
 }
 
-const Pagination: React.FC<PaginationProps> = ({totalPosts,postsPerPage,setCurrentPage, currentPage}) => {
+const Pagination: React.FC<PaginationProps> = ({totalPosts, postsPerPage, setCurrentPage, currentPage}) => {
   let pages = [];
   for (let i = 1; i <= Math.ceil(totalPosts / postsPerPage); i++) {
     pages.push(i);
-  }
+  } // to decide on the number of pages according to total posts and posts per page
 
   const handlePageClick = (page: number) => {
     setCurrentPage(page);

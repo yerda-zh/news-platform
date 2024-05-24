@@ -2,10 +2,10 @@
 import React from 'react'
 import { FooterContainer } from './Footer.styles';
 import { useRouter } from 'next/navigation';
+import { tags } from '@/app/constants/tags';
 
 const Footer = () => {
   const router = useRouter();
-  const topics: string[] = ['Ақпарат', 'Әдебиет', 'Өнер', 'Ғылым', 'Эксклюзив', 'Карьера', 'Спорт', 'Тарих',];
 
   const handleTagClick = (tag: string) => {
     router.push(`/post/tag/${tag}`);
@@ -14,8 +14,8 @@ const Footer = () => {
   return (
     <FooterContainer>
       <div>
-        {topics.map((topic) => (
-          <a key={topic} onClick={() => handleTagClick(topic)}>{topic}</a>
+        {tags.map((tag) => (
+          <a key={tag} onClick={() => handleTagClick(tag)}>{tag}</a>
         ))}
       </div>
       <div>

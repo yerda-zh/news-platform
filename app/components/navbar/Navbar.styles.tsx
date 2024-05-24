@@ -1,5 +1,6 @@
 'use client'
 import styled from "styled-components";
+import { FiSearch } from "react-icons/fi";
 
 export const NavContainer = styled.nav`
     background-color: var(--color-white);
@@ -59,4 +60,18 @@ export const SearchInput = styled.input`
   font-size: 1rem;
   outline: none;
   border-radius: 1rem;
+`;
+
+export const SearchIcon = styled(FiSearch)`
+    cursor: pointer;
+    padding: 0.3rem;
+    font-size: 1.8rem;
+    border-radius: 50%;
+    color: var(--color-main);
+    transition: 0.1s ease-in-out;
+
+    &:hover {
+        background: var(--color-main);
+        color: var(--color-white);
+    }
 `;
