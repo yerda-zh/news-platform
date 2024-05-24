@@ -1,5 +1,7 @@
 'use client';
 import styled from "styled-components";
+import { FaFacebook, FaTwitter } from "react-icons/fa";
+import { FaVk } from "react-icons/fa6";
 
 interface ButtonProps {
     buttonType: "light" | "dark";
@@ -80,16 +82,36 @@ export const Button = styled.button<ButtonProps>`
     border: none;
     border-radius: 2rem;
     font-weight: bold;
-    font-size: 1.125rem;
+    font-size: 1.25rem;
     color: ${({buttonType}) => buttonType === 'light' ? 'var(--color-main)' : 'var(--color-white)'};
     transition: 0.1s ease-in-out;
     display: flex;
     justify-content: center;
-    gap: 0.7rem;
+    gap: 2rem;
     background-color: ${({liked}) => liked ? 'var(--color-red)' : ''};
     color: ${({liked}) => liked ? 'var(--color-white)' : ''};
+    cursor: pointer;
 
     &:hover {
         transform: scale(0.95);
+    }
+`;
+
+export const FacebookIcon = styled(FaFacebook)`
+    transition: 0.1s ease-in-out;
+    &:hover{
+        color: var(--color-red);
+    }
+`;
+export const TwitterIcon = styled(FaTwitter)`
+    transition: 0.1s ease-in-out;
+    &:hover{
+        color: var(--color-red);
+    }
+`;
+export const VkIcon = styled(FaVk)`
+    transition: 0.1s ease-in-out;
+    &:hover{
+        color: var(--color-red);
     }
 `;

@@ -17,6 +17,7 @@ export const HeaderContainer = styled.div`
     h2 {
         font-family: var(--font-header);
         font-weight: normal;
+        cursor: pointer;
     }
 `;
 
@@ -41,13 +42,21 @@ export const SearchbarContainer = styled.div`
 
     div{
         background: var(--color-white);
-        width: 1.7rem;
-        aspect-ratio: 1/1;
-        border-radius: 50%;
+        border-radius: 1rem;
         display: flex;
         align-items: center;
         justify-content: center;
         margin-left: auto;
-        margin-right: 0.3rem;
+        border: 1px var(--color-main) solid;
+        padding-right: 1rem;
     }
+`;
+
+export const SearchInput = styled.input`
+  padding: 0.5rem;
+  border: none;
+  margin-right: 0.5rem;
+  font-size: 1rem;
+  outline: none;
+  border-radius: 1rem;
 `;

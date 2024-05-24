@@ -56,6 +56,7 @@ export const EditContainer = styled.div<Comment>`
         display: ${({ editting }) => !editting ? 'none' : ''};
         padding: 0.5rem 1rem;
         font-family: var(--font-main);
+        font-size: 1rem;
         background-color: var(--color-main);
         color: var(--color-white);
         border: none;

@@ -1,15 +1,21 @@
 'use client';
 import React from 'react'
 import { FooterContainer } from './Footer.styles';
+import { useRouter } from 'next/navigation';
 
 const Footer = () => {
-  const topics: string[] = ['Ақпарат', 'Әдебиет', 'Өнер', 'Ғылым', 'Эксклюзив', 'Карьера', 'Спорт', 'Тарих',];  
+  const router = useRouter();
+  const topics: string[] = ['Ақпарат', 'Әдебиет', 'Өнер', 'Ғылым', 'Эксклюзив', 'Карьера', 'Спорт', 'Тарих',];
+
+  const handleTagClick = (tag: string) => {
+    router.push(`/post/tag/${tag}`);
+  };
   
   return (
     <FooterContainer>
       <div>
         {topics.map((topic) => (
-          <a key={topic}>{topic}</a>
+          <a key={topic} onClick={() => handleTagClick(topic)}>{topic}</a>
         ))}
       </div>
       <div>

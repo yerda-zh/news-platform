@@ -10,7 +10,6 @@ import { useSelector, useDispatch } from "react-redux";
 import { RootState } from "./redux/store";
 import { addPosts } from "./redux/postsSlice";
 import { useRouter } from "next/navigation";
-import { trio } from 'ldrs';
 
 
 export default function Home(): JSX.Element {
