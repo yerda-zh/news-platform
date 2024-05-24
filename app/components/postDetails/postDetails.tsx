@@ -13,7 +13,8 @@ interface PostDetailsProps {
 }
 
 const PostDetails: React.FC<PostDetailsProps> = ({ post, onLikeClick }) => {
-  const { currentUrl } = useSocialShare();
+  const currentUrl = useSocialShare();
+  console.log(currentUrl);
 
   return (
     <PostDetailsContainer>
