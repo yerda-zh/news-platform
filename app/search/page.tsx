@@ -52,12 +52,12 @@ export default function SearchResults(): JSX.Element {
   }
 
   if (!results.length) {
-    return <LoadingContainer>No results found for "{query}"</LoadingContainer>;
+    return <LoadingContainer>{`No results found for ${query}`}</LoadingContainer>;
   }
 
   return (
     <main>
-        <h1 style={{fontFamily: 'var(--font-main)', margin: '2rem 1rem 1rem 2.5rem'}}>Search Results for: {query}</h1>
+        <h1 style={{fontFamily: 'var(--font-main)', margin: '2rem 1rem 1rem 2.5rem'}}>{`Search Results for: ${query}`}</h1>
       <MasonryLayout style={{ padding: '1rem 2.5rem' }}>
         {results.map((post, index) => (
           <Card

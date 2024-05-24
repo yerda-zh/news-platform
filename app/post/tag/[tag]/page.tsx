@@ -3,7 +3,7 @@ import React from 'react';
 import { useRouter } from 'next/navigation';
 import { RootState } from '@/app/redux/store';
 import Card from '@/app/components/card/Card';
-import { MasonryLayout } from '@/app/main.styles';
+import { LoadingContainer, MasonryLayout } from '@/app/main.styles';
 import { useParams } from 'next/navigation';
 import { useSelector } from 'react-redux';
 
@@ -21,6 +21,10 @@ const PostsByTag = () => {
     const handleCardClick = (id: number): void => {
         router.push(`/post/${encodeURIComponent(id)}`);
     };
+
+    if (!posts.length) {
+        return <LoadingContainer>{`No results found for ${decodeURIComponent(tag as string)}`}</LoadingContainer>;
+      }
 
     return (
         <MasonryLayout style={{ padding: '1rem 2.5rem' }}>

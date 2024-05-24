@@ -32,6 +32,12 @@ export default function NavBar(): React.JSX.Element {
       }
     };
 
+    const handleKeyDown = (e: React.KeyboardEvent<HTMLInputElement>) => {
+        if ( e.key === 'Enter' ) {
+            handleSearchClick();
+        }
+    };
+
     return (
         <NavContainer>
         <HeaderContainer>
@@ -44,7 +50,7 @@ export default function NavBar(): React.JSX.Element {
             <a key={topic} onClick={() => handleTagClick(topic)}>{topic}</a>
           ))}
           <div>
-            <SearchInput type="text" placeholder="Іздеу..." value={searchQuery} onChange={handleSearchChange}/>
+            <SearchInput type="text" placeholder="Іздеу..." value={searchQuery} onChange={handleSearchChange} onKeyDown={handleKeyDown}/>
             <FiSearch onClick={handleSearchClick} style={{cursor: 'pointer'}}/>
           </div>
         </SearchbarContainer>
