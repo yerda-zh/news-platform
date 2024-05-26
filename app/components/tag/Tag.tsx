@@ -12,4 +12,4 @@ const Tag: React.FC<TagProps> = ({tag}): JSX.Element => {
   )
 }
 
-export default Tag
+export default Tag;
