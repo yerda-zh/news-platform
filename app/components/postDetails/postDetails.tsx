@@ -12,7 +12,7 @@ interface PostDetailsProps {
   onLikeClick: () => void;
 }
 
-const PostDetails: React.FC<PostDetailsProps> = ({ post, onLikeClick }) => {
+const PostDetails: React.FC<PostDetailsProps> = ({ post, onLikeClick }): JSX.Element => {
   const currentUrl = useSocialShare();
   console.log(currentUrl);
 

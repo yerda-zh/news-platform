@@ -1,4 +1,3 @@
-// pages/post/[id].tsx
 'use client';
 import React from 'react';
 import usePost from '../../hooks/usePost';
@@ -10,12 +9,13 @@ import { AppDispatch } from '../../redux/store';
 import { incrementLikeCount, decrementLikeCount } from '../../redux/postsSlice';
 import { PostContainer } from './detailed.styles';
 import { LoadingContainer } from '@/app/components/loader/Loader.styles';
+import { Post } from '../../redux/postsSlice';
 
-const Post = () => {
-  const { post, otherPosts, postId } = usePost();
+const PostPage = (): JSX.Element => {
+  const { post, otherPosts, postId }: {post:  Post | undefined; otherPosts: Post[]; postId: number;} = usePost();
   const dispatch = useDispatch<AppDispatch>();
 
-  const handleLikeClick = () => {
+  const handleLikeClick = (): void => {
     if (post && !post.liked) {
       dispatch(incrementLikeCount(postId));
     } else {
@@ -40,4 +40,4 @@ const Post = () => {
   );
 }
 
-export default Post;
+export default PostPage;

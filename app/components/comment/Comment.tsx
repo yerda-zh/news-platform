@@ -12,7 +12,7 @@ interface CommentsProps {
   mine: boolean;
 }
 
-const Comment: React.FC<CommentsProps> = ({ commentId, postId, email, body, mine }) => {
+const Comment: React.FC<CommentsProps> = ({ commentId, postId, email, body, mine }): JSX.Element => {
   const {
     editting,
     comment,

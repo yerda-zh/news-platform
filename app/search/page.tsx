@@ -5,9 +5,10 @@ import { LoadingContainer } from '../components/loader/Loader.styles';
 import { useSearchPosts } from '../hooks/useSearchPosts';
 import { getCardType } from '../constants/functions';
 import Loader from '../components/loader/Loader';
+import { Post } from '../redux/postsSlice';
 
-const SearchResults:React.FC = () => {
-  const { loading, results, query } = useSearchPosts();
+const SearchResults = (): JSX.Element => {
+  const { loading, results, query }: {loading: boolean, results: Post[], query: string} = useSearchPosts();
 
   if(!results.length) return <LoadingContainer>{`No results found for ${query}`}</LoadingContainer>;
 

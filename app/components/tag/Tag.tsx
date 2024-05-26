@@ -6,7 +6,7 @@ interface TagProps{
     tag: 'Ақпарат' | 'Әдебиет' | 'Өнер' | 'Ғылым' | 'Эксклюзив' | 'Карьера' | 'Спорт' | 'Тарих';
 };
 
-const Tag: React.FC<TagProps> = ({tag}) => {
+const Tag: React.FC<TagProps> = ({tag}): JSX.Element => {
   return (
     <TagContainer tag={tag}>{tag}</TagContainer>
   )

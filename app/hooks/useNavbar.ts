@@ -1,3 +1,4 @@
+// hook to manipulate with navbar component
 import { useState } from 'react';
 import { useRouter } from 'next/navigation';
 
@@ -10,7 +11,7 @@ export const useSearch = () => {
   };
 
   // navigates to another page by passing searchQuery in the url params
-  const handleSearchClick = () => {
+  const handleSearchClick = (): void => {
     if (searchQuery.trim()) {
       router.push(`/search?query=${searchQuery}`);
       setSearchQuery('');

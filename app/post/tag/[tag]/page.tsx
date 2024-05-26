@@ -7,30 +7,33 @@ import { MasonryLayout } from '@/app/components/postList/PostList.styles';
 import { useParams } from 'next/navigation';
 import { getCardType } from '@/app/constants/functions';
 import { usePostsByTag } from '@/app/hooks/useTag';
+import { Post } from '@/app/redux/postsSlice';
 
-const PostsByTag = () => {
+const PostsByTag = (): JSX.Element => {
     const params = useParams();
     const { tag } = params;
-    const posts = usePostsByTag(tag as string);
+    const posts: Post[] = usePostsByTag(tag as string);
 
     if (!posts.length) {
-        return <LoadingContainer>{`No results found for ${decodeURIComponent(tag as string)}`}</LoadingContainer>;
-      }
+      return (
+        <LoadingContainer>{`No results found for ${decodeURIComponent(tag as string)}`}</LoadingContainer>
+      );
+    }
 
     return (
-        <MasonryLayout style={{ padding: '3rem 2.5rem' }}>
-            {posts.map((post, index) => (
-                <Card 
-                    id={post.id}
-                    key={post.id} 
-                    type={getCardType(index)} 
-                    title={post.title} 
-                    imageUrl={post.imageUrl} 
-                    date={post.date} 
-                    tag={post.tag}
-                />
-            ))}
-        </MasonryLayout>
+      <MasonryLayout style={{ padding: "3rem 2.5rem" }}>
+        {posts.map((post, index) => (
+          <Card
+            id={post.id}
+            key={post.id}
+            type={getCardType(index)}
+            title={post.title}
+            imageUrl={post.imageUrl}
+            date={post.date}
+            tag={post.tag}
+          />
+        ))}
+      </MasonryLayout>
     );
 }
 

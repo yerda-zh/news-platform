@@ -10,7 +10,7 @@ interface PostListProps {
   posts: Post[];
 }
 
-const PostList: React.FC<PostListProps> = ({ posts }) => {
+const PostList: React.FC<PostListProps> = ({ posts }): JSX.Element => {
   return (
     <MasonryContainer>
       <FirstRow>

@@ -12,7 +12,7 @@ interface PostCommentsProps {
   comments: any[];
 }
 
-const PostComments: React.FC<PostCommentsProps> = ({ postId, comments }) => {
+const PostComments: React.FC<PostCommentsProps> = ({ postId, comments }): JSX.Element => {
   const dispatch = useDispatch<AppDispatch>();
   const [newComment, setNewComment] = useState<string>('');
 

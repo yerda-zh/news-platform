@@ -3,12 +3,13 @@ import React from 'react';
 import { MasonryLayout } from '../postList/PostList.styles';
 import Card from '../card/Card';
 import { getCardType } from '@/app/constants/functions';
+import { Post } from '@/app/redux/postsSlice';
 
 interface OtherPostsProps {
-  posts: any[];
+  posts: Post[];
 }
 
-const OtherPosts: React.FC<OtherPostsProps> = ({ posts }) => {
+const OtherPosts: React.FC<OtherPostsProps> = ({ posts }): JSX.Element => {
   return (
     <MasonryLayout style={{ background: "var(--color-white)", padding: "6rem 3rem" }}>
       {posts.map((post, index) => (

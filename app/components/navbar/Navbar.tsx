@@ -1,20 +1,19 @@
 'use client'
 import React from 'react'
-import { NavContainer, HeaderContainer, SearchbarContainer, SearchInput, SearchIcon, } from './Navbar.styles'
-import { FiSearch } from "react-icons/fi";
+import { NavContainer, HeaderContainer, SearchbarContainer, SearchInput, SearchIcon, } from './Navbar.styles';
 import { useRouter } from 'next/navigation';
 import { useSearch } from '@/app/hooks/useNavbar';
 import { tags } from '@/app/constants/tags';
 
-export default function NavBar(): React.JSX.Element {
+export default function NavBar(): JSX.Element {
     const router = useRouter();
     const { searchQuery, handleSearchChange, handleSearchClick, handleKeyDown } = useSearch();
 
-    const handleTagClick = (tag: string) => {
+    const handleTagClick = (tag: string): void => {
       router.push(`/post/tag/${tag}`);
     };
 
-    const handleMainClick = () => {
+    const handleMainClick = (): void => {
       router.push('/');
     };
 

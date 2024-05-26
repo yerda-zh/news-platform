@@ -6,20 +6,21 @@ import { useFetchPosts } from "./hooks/useFetchPosts";
 import Loader from "./components/loader/Loader";
 import PostList from "./components/postList/PostList";
 import Pagination from "./components/pagination/Pagination";
+import { Post } from "./redux/postsSlice";
 
 export default function Home(): JSX.Element {
   const posts = useSelector((state: RootState) => state.posts); // redux state
 
   // useFetchPosts fetches posts to set redux state and return loading and error states
-  const { loading, error } = useFetchPosts();
+  const { loading, error }: {loading: boolean, error: string | null} = useFetchPosts();
 
   const [currentPage, setCurrentPage] = useState<number>(1);
 
   // used for dividing posts into different pages
-  const postsPerPage = 14;
-  const lastPostIndex = currentPage * postsPerPage;
-  const firstPostIndex = lastPostIndex - postsPerPage;
-  const currentPosts = posts.slice(firstPostIndex, lastPostIndex);
+  const postsPerPage: number = 14;
+  const lastPostIndex: number = currentPage * postsPerPage;
+  const firstPostIndex: number = lastPostIndex - postsPerPage;
+  const currentPosts: Post[] = posts.slice(firstPostIndex, lastPostIndex);
 
   return (
     <main>

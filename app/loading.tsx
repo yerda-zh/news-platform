@@ -2,7 +2,7 @@
 import { useEffect } from "react";
 import { LoadingContainer } from "./components/loader/Loader.styles";
 
-export default function Loading() {
+export default function Loading(): JSX.Element {
   useEffect(()=>{
     if (typeof window !== 'undefined') {
       import('ldrs').then(({ momentum }) => {

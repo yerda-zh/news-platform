@@ -1,8 +1,7 @@
 'use client';
 import { createSlice, PayloadAction } from "@reduxjs/toolkit";
-import Post from "../post/[id]/page";
 
-interface Comment {
+export interface Comment {
   postId: number;
   id: number;
   name: string;

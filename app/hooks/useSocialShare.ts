@@ -2,7 +2,7 @@
 import { usePathname } from 'next/navigation';
 import { useState, useEffect } from 'react';
 
-const useSocialShare = () => {
+const useSocialShare = (): string => {
   const [currentUrl, setCurrentUrl] = useState<string>('');
 
   useEffect(() => {

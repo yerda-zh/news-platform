@@ -12,23 +12,27 @@ interface CardProps {
   type: "full" | "partial" | "plain";
 }
 
-const Card: React.FC<CardProps> = ({ id, title, imageUrl, date, tag, type }) => {
-    const router = useRouter();
+const Card: React.FC<CardProps> = ({id, title, imageUrl, date, tag, type,}): JSX.Element => {
+  const router = useRouter();
 
-    const handleCardClick = (id: number): void => {
-      router.push(`/post/${id}`);
-    };
-
-    return (
-      <CardContainer type={type} bg={imageUrl}  onClick={() => handleCardClick(id)}>
-        <img src={imageUrl} alt={title} />
-        <div>
-          <Tag tag={tag}/>
-          <h3>{title}</h3>
-          <span>{date}</span>
-        </div>
-      </CardContainer>
-    );
+  const handleCardClick = (id: number): void => {
+    router.push(`/post/${id}`);
   };
+
+  return (
+    <CardContainer
+      type={type}
+      bg={imageUrl}
+      onClick={() => handleCardClick(id)}
+    >
+      <img src={imageUrl} alt={title} />
+      <div>
+        <Tag tag={tag} />
+        <h3>{title}</h3>
+        <span>{date}</span>
+      </div>
+    </CardContainer>
+  );
+};
   
 export default Card;

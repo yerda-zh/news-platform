@@ -4,10 +4,10 @@ import { FooterContainer } from './Footer.styles';
 import { useRouter } from 'next/navigation';
 import { tags } from '@/app/constants/tags';
 
-const Footer = () => {
+const Footer = (): JSX.Element => {
   const router = useRouter();
 
-  const handleTagClick = (tag: string) => {
+  const handleTagClick = (tag: string): void => {
     router.push(`/post/tag/${tag}`);
   };
   

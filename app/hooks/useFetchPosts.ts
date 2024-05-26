@@ -1,18 +1,19 @@
 // useFetchPosts fetched posts, comments from jsonplaceholder, additionally using picsum photos and create data object
 // data object is then used to set redux state since the application uses this state in multiple pages
-
 import { useState, useEffect } from "react";
 import axios from "axios";
 import { useDispatch, useSelector } from "react-redux";
 import { addPosts } from "../redux/postsSlice";
 import { getRandomTag, getRandomDate, getRandomLikeCount } from "../constants/functions";
 import { RootState } from "../redux/store";
+import { AppDispatch } from "../redux/store";
+import { Post } from "../redux/postsSlice";
 
-const maxPosts = 62;
+const maxPosts: number = 62;
 
-export const useFetchPosts = () => {
+export const useFetchPosts = (): {loading: boolean; error: string | null;} => {
   const posts = useSelector((state: RootState) => state.posts);
-  const dispatch = useDispatch();
+  const dispatch = useDispatch<AppDispatch>();
   const [loading, setLoading] = useState<boolean>(true);
   const [error, setError] = useState<string | null>(null);
 
@@ -21,11 +22,11 @@ export const useFetchPosts = () => {
       setLoading(false);
       return;
     }
-    const fetchPosts = async () => {
+    const fetchPosts = async (): Promise<void> => {
       try {
         const postsResponse = await axios.get('https://jsonplaceholder.typicode.com/posts');
 
-        const data = await Promise.all(postsResponse.data.slice(0, maxPosts).map(async (post: any, index: number) => {
+        const data: Post[] = await Promise.all(postsResponse.data.slice(0, maxPosts).map(async (post: any, index: number) => {
           const commentsResponse = await axios.get(`https://jsonplaceholder.typicode.com/posts/${post.id}/comments`);
 
           return {
